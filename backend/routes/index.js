@@ -1,11 +1,8 @@
-const express = require("express");
-const Route = express.Router();
-var apiRouter = require("../routes/api/index");
-var authRouter = require("../routes/auth");
+import { Router } from "express";
+import qnaRouter from "./qna.route.js";
 
-Route.use("/auth", authRouter);
-Route.use("/api", apiRouter);
-// Route.use("/application", applicationRoute);
+const router = Router();
 
-module.exports = Route;
+router.use("/qna", qnaRouter);
 
+export default router;

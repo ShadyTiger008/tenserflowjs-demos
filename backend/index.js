@@ -2,15 +2,12 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
-import * as tf from "@tensorflow/tfjs-node";
-import * as qna from "@tensorflow-models/qna";
-import routes from "./routes/index";
+
+import routes from "./routes/index.js";
+
+dotenv.config({ path: "./.env" });
 
 const app = express();
-
-dotenv.config({
-  path: "./.env",
-});
 
 app.use(
   cors({
@@ -24,12 +21,11 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
+app.use("/", routes);
 
-
-app.use("/", routes)
-
-app.listen(8000, () => {
-  console.log("Server is listening on port 8000");
+const PORT = process.env.PORT || 8000;
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
 });
 
 export { app };

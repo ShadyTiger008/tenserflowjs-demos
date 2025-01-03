@@ -1,9 +1,9 @@
 import { Router } from "express";
-import { getAnswer } from "../controller/qna.controller";
-import { loadModel } from "../middlewares/load-model.middleware";
+import { getAnswer } from "../controller/qna.controller.js";
+import { loadModel } from "../middlewares/load-model.middleware.js";
 
 const router = Router();
 
-router.route("/update-account").post(loadModel, getAnswer);
+router.post("/get-answer", loadModel, getAnswer);
 
 export default router;
